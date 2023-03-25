@@ -423,28 +423,28 @@ function handleClick1(e) {
 			// day_num = 3
 
 			if (
-				day_num == 7 ||
+				day_num === 7 ||
 				(get_schedule_json(document.getElementById("group_num").value)["grid"][
 					day_num
-				][1].length == 0 &&
+				][1].length === 0 &&
 					get_schedule_json(document.getElementById("group_num").value)["grid"][
 						day_num
-					][2].length == 0 &&
+					][2].length === 0 &&
 					get_schedule_json(document.getElementById("group_num").value)["grid"][
 						day_num
-					][3].length == 0 &&
+					][3].length === 0 &&
 					get_schedule_json(document.getElementById("group_num").value)["grid"][
 						day_num
-					][4].length == 0 &&
+					][4].length === 0 &&
 					get_schedule_json(document.getElementById("group_num").value)["grid"][
 						day_num
-					][5].length == 0 &&
+					][5].length === 0 &&
 					get_schedule_json(document.getElementById("group_num").value)["grid"][
 						day_num
-					][6].length == 0 &&
+					][6].length === 0 &&
 					get_schedule_json(document.getElementById("group_num").value)["grid"][
 						day_num
-					][7].length == 0)
+					][7].length === 0)
 			) {
 				return (
 					<div>
