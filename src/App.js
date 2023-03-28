@@ -5,7 +5,6 @@
 // import { Col, Container, Row } from '@sberdevices/plasma-ui';
 // import HeaderApp from './components/Header/Header';
 
-
 // import { Button } from '@salutejs/plasma-ui';
 
 // export default function App() {
@@ -25,38 +24,36 @@ import styled, { createGlobalStyle } from 'styled-components';
 // получаем значение для целевой платформы
 import { sberBox } from '@salutejs/plasma-tokens/typo';
 // получаем стилевые объекты для нашего интерфейса
-import { body1, headline2 } from '@salutejs/plasma-tokens';
+import { body1 } from '@salutejs/plasma-tokens';
 
 // получаем тему персонажа
 import { darkJoy } from '@salutejs/plasma-tokens';
 // получаем цвета для нашего интерфейса
 import { text, background, gradient } from '@salutejs/plasma-tokens';
-import { Button} from '@salutejs/plasma-ui';
 import HeaderApp from './components/Header/Header';
-import { Container, Row, Col } from '@sberdevices/plasma-ui';
+import { Container, Row } from '@sberdevices/plasma-ui';
 import Schedule from './components/Schedule/Shedule';
 
 const AppStyled = styled.div`
-    padding: 30px;
-    margin-bottom: 0px;
-    background-color: ${background};
-    background-image: ${gradient};
-    ${body1}
-    min-height: 100vh;
+  padding: 30px;
+  margin-bottom: 0px;
+  background-color: ${background};
+  background-image: ${gradient};
+  ${body1}
+  min-height: 100vh;
 `;
 
 // создаем react-компонент c глобальными стилями типографики
 const TypoScale = createGlobalStyle(sberBox);
 
-const StyledPreview = styled.div`
-    ${darkJoy[":root"]};
-    ${sberBox[":root"]};
+// const StyledPreview = styled.div`
+//   ${darkJoy[':root']};
+//   ${sberBox[':root']};
 
-    height: 100%;
-    min-height: 100vh;
-    background-image: ${gradient};
-
-`
+//   height: 100%;
+//   min-height: 100vh;
+//   background-image: ${gradient};
+// `;
 
 // создаем react-компонент для подложки
 const DocStyles = createGlobalStyle`
@@ -73,28 +70,26 @@ const DocStyles = createGlobalStyle`
 const Theme = createGlobalStyle(darkJoy);
 
 const App = () => {
-    return (
-        <AppStyled>
-            {/* Используем глобальные react-компоненты один раз */}
-             <TypoScale />
-            <DocStyles />
-            <Theme />
-            <Container>
-                <Row style={{justifyContent:'center'}}>
-                    <HeaderApp />
-                </Row>
-                {/* <Row>
+  return (
+    <AppStyled>
+      {/* Используем глобальные react-компоненты один раз */}
+      <TypoScale />
+      <DocStyles />
+      <Theme />
+      <Container>
+        <Row style={{ justifyContent: 'center' }}>
+          <HeaderApp />
+        </Row>
+        {/* <Row>
                     <Col sizeS={4} sizeM={4} sizeL={4} sizeXL={6} offsetM={1} offsetL={2} offsetXL={3}>
                          <p style={{ marginBottom: '1rem', textAlign:'center'}}>1</p> 
                          <Schedule style={{textAlign:'center'}}/>
                     </Col>
                 </Row>*/}
-                <Schedule/>
-        
-            </Container>
-            
-        </AppStyled>
-    );
+        <Schedule />
+      </Container>
+    </AppStyled>
+  );
 };
 
 export default App;
