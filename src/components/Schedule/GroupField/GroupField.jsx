@@ -1,10 +1,15 @@
 import { TextField } from '@sberdevices/plasma-ui';
 import { Button, Row } from '@salutejs/plasma-ui';
 import React, { useState } from 'react';
+import { observer } from 'mobx-react-lite';
+// import { observer } from 'mobx-react-lite';
+// import ScheduleStore from '@store/ScheduleStore';
+// import { observer } from 'mobx-react-lite';
 // import axios from 'axios';
 
-const GroupField = ({ onClick }) => {
+const GroupField = observer(({ store }) => {
   const [groupNumber, setGroupNumber] = useState('');
+
   // const [schedule, setSchedule] = useState('');
 
   // const getSchedule = async (groupNumber) => {
@@ -38,11 +43,11 @@ const GroupField = ({ onClick }) => {
           text="Показать расписание"
           view="primary"
           size="s"
-          onClick={() => onClick(groupNumber)}
+          onClick={() => store.getScheduleData(groupNumber)}
         />
       </Row>
     </div>
   );
-};
+});
 
 export default GroupField;
