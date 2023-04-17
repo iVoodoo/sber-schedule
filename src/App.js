@@ -17,22 +17,22 @@
 //     );
 // }
 
-import React from 'react';
+import React from "react"
 // createGlobalStyle нужен для создания глобальных стилей
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components"
 
 // получаем значение для целевой платформы
-import { sberBox } from '@salutejs/plasma-tokens/typo';
+import { sberBox } from "@salutejs/plasma-tokens/typo"
 // получаем стилевые объекты для нашего интерфейса
-import { body1 } from '@salutejs/plasma-tokens';
+import { body1 } from "@salutejs/plasma-tokens"
 
 // получаем тему персонажа
-import { darkJoy } from '@salutejs/plasma-tokens';
+import { darkJoy } from "@salutejs/plasma-tokens"
 // получаем цвета для нашего интерфейса
-import { text, background, gradient } from '@salutejs/plasma-tokens';
-import HeaderApp from './components/Header/Header';
-import { Container, Row } from '@sberdevices/plasma-ui';
-import Schedule from './components/Schedule/Shedule';
+import { text, background, gradient } from "@salutejs/plasma-tokens"
+import HeaderApp from "./components/Header/Header"
+import { Container, Row } from "@sberdevices/plasma-ui"
+import Schedule from "./components/Schedule/Shedule"
 
 const AppStyled = styled.div`
   padding: 30px;
@@ -41,10 +41,10 @@ const AppStyled = styled.div`
   background-image: ${gradient};
   ${body1}
   min-height: 100vh;
-`;
+`
 
 // создаем react-компонент c глобальными стилями типографики
-const TypoScale = createGlobalStyle(sberBox);
+const TypoScale = createGlobalStyle(sberBox)
 
 // const StyledPreview = styled.div`
 //   ${darkJoy[':root']};
@@ -65,9 +65,9 @@ const DocStyles = createGlobalStyle`
         /** необходимо залить градиентом всю подложку */
         min-height: 100vh;
     }
-`;
+`
 // создаем react-компонент для персонажа
-const Theme = createGlobalStyle(darkJoy);
+const Theme = createGlobalStyle(darkJoy)
 
 const App = () => {
   return (
@@ -77,7 +77,7 @@ const App = () => {
       <DocStyles />
       <Theme />
       <Container>
-        <Row style={{ justifyContent: 'center' }}>
+        <Row style={{ justifyContent: "center" }}>
           <HeaderApp />
         </Row>
         {/* <Row>
@@ -89,7 +89,7 @@ const App = () => {
         <Schedule />
       </Container>
     </AppStyled>
-  );
-};
+  )
+}
 
-export default App;
+export default App

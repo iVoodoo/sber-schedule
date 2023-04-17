@@ -8,9 +8,11 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
-    "indent": ["error", 2],
+    "indent": "off",
     "linebreak-style": 1,
-    "quotes": ["error", "single"]
+    "quotes": ["error", "double"],
+    "semi": ["error", "never"],
+    "comma-dangle": ["error", "never"]
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {

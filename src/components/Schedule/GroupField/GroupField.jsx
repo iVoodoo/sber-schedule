@@ -1,35 +1,15 @@
-import { TextField } from '@sberdevices/plasma-ui';
-import { Button, Row } from '@salutejs/plasma-ui';
-import React, { useState } from 'react';
-import { observer } from 'mobx-react-lite';
-// import { observer } from 'mobx-react-lite';
-// import ScheduleStore from '@store/ScheduleStore';
-// import { observer } from 'mobx-react-lite';
-// import axios from 'axios';
+import { TextField } from "@sberdevices/plasma-ui"
+import { Button, Row } from "@salutejs/plasma-ui"
+import React, { useState } from "react"
+import { observer } from "mobx-react-lite"
+import ScheduleStore from "@store/ScheduleStore"
 
-const GroupField = observer(({ store }) => {
-  const [groupNumber, setGroupNumber] = useState('');
-
-  // const [schedule, setSchedule] = useState('');
-
-  // const getSchedule = async (groupNumber) => {
-  //   try {
-  //     const response = await axios.get('/data/data.json');
-  //     const preparedResponse = response.data.contents;
-  //     const founded = preparedResponse[groupNumber];
-  //     setSchedule(founded);
-  //     console.log(founded);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-
-  //   console.log('GET schedule for ', groupNumber);
-  //   console.log('result', schedule);
-  // };
+const GroupField = observer(() => {
+  const [groupNumber, setGroupNumber] = useState("")
 
   return (
     <div>
-      <Row style={{ marginBottom: '1rem', justifyContent: 'center' }}>
+      <Row style={{ marginBottom: "1rem", justifyContent: "center" }}>
         <TextField
           size="m"
           placeholder="Номер группы"
@@ -38,16 +18,24 @@ const GroupField = observer(({ store }) => {
           onChange={(e) => setGroupNumber(e.target.value)}
         />
       </Row>
-      <Row style={{ marginBottom: '1rem', justifyContent: 'center' }}>
+      <Row style={{ marginBottom: "1rem", justifyContent: "center" }}>
         <Button
-          text="Показать расписание"
+          text="Всё расписание"
           view="primary"
           size="s"
-          onClick={() => store.getScheduleData(groupNumber)}
+          onClick={() => ScheduleStore.getScheduleData(groupNumber)}
+        />
+      </Row>
+      <Row style={{ marginBottom: "1rem", justifyContent: "center" }}>
+        <Button
+          text="Занятия на сегодня"
+          view="primary"
+          size="s"
+          onClick={() => ScheduleStore.getScheduleToday(groupNumber)}
         />
       </Row>
     </div>
-  );
-});
+  )
+})
 
-export default GroupField;
+export default GroupField

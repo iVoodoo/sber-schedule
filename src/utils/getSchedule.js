@@ -1,19 +1,19 @@
-import axios from 'axios';
+import axios from "axios"
 
 const getSchedule = async (groupNumber) => {
-  const response = await axios.get('/data/data.json');
-  const preparedResponse = response.data.contents;
-  const founded = preparedResponse[groupNumber];
-  console.log('GET schedule for ', groupNumber);
-  console.log('result', founded);
+  const response = await axios.get("/data/data.json")
+  const preparedResponse = response.data.contents
+  const founded = preparedResponse[groupNumber]
+  console.log("GET schedule for ", groupNumber)
+  console.log("result", founded)
   if (founded.length !== 0) {
     return {
       data: founded.grid,
       group: founded.group.title
-    };
+    }
   } else {
-    return { data: 'Группа не найдена' };
+    return { data: "Группа не найдена" }
   }
-};
+}
 
-export default getSchedule;
+export default getSchedule

@@ -1,51 +1,80 @@
-import axios from 'axios';
-import { makeAutoObservable } from 'mobx';
+import axios from "axios"
+import { makeAutoObservable, runInAction } from "mobx"
 
 class ScheduleStore {
   scheduleData = {
-    data: '',
-    group: '',
+    data: "",
+    group: "",
+    today: false,
     status: false
-  };
+  }
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
   }
 
   get schedule() {
-    return this.scheduleData;
+    return this.scheduleData
   }
 
   clearSchedule = () => {
-    this.scheduleData = {};
-  };
+    this.scheduleData = { data: "", group: "", today: false, status: false }
+  }
 
   getScheduleData = async (groupNumber) => {
-    this.clearSchedule();
-    const response = await axios.get('/data/data.json');
-    const preparedResponse = response.data.contents;
-    const founded = preparedResponse[groupNumber];
-    // const grid = ;
-    // console.log(founded.grid);
-    // console.log('GET schedule for ', groupNumber);
-    // console.log('result', founded.grid[5][3]['1'].sbj);
-    // console.log('result', grid);
-
+    this.clearSchedule()
+    const response = await axios.get("/data/data.json")
+    const preparedResponse = response.data.contents
+    const founded = preparedResponse[groupNumber]
     if (founded) {
-      console.log('here');
-
-      this.scheduleData = {
-        data: JSON.stringify(founded.grid),
-        group: founded.group.title,
-        status: true
-      };
+      runInAction(() => {
+        this.scheduleData = {
+          data: JSON.stringify(founded.grid),
+          group: founded.group.title,
+          today: false,
+          status: true
+        }
+      })
     } else {
-      console.log('bad');
-      this.scheduleData = { data: null, group: 'Группа не найдена', status: false };
+      runInAction(() => {
+        this.scheduleData = {
+          data: null,
+          group: "Либо введи номер группы, либо группа не найдена",
+          today: false,
+          status: false
+        }
+      })
     }
+  }
 
-    // console.log(this.schedule.group);
-  };
+  getScheduleToday = async (groupNumber) => {
+    this.clearSchedule()
+    const today = new Date().getDay()
+    console.log(today)
+    const response = await axios.get("/data/data.json")
+    const preparedResponse = response.data.contents
+    const founded = preparedResponse[groupNumber]
+
+    if (founded && today !== 0) {
+      runInAction(() => {
+        this.scheduleData = {
+          data: JSON.stringify(founded.grid[today]),
+          group: founded.group.title,
+          today: true,
+          status: true
+        }
+      })
+    } else {
+      runInAction(() => {
+        this.scheduleData = {
+          data: null,
+          group: "Введи номер группы или отдыхай",
+          today: true,
+          status: false
+        }
+      })
+    }
+  }
 }
 
-export default ScheduleStore;
+export default new ScheduleStore()
