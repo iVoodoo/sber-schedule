@@ -7,20 +7,28 @@
     "@salutejs/plasma-tokens": "^1.18.1",
     "@salutejs/plasma-ui": "^1.101.1",
     "@sberdevices/assistant-client": "^5.0.2",
-    "@sberdevices/plasma-icons": "^1.75.0",
-    "@sberdevices/plasma-tokens": "^1.17.0",
-    "@sberdevices/plasma-ui": "^1.95.0",
+    "@types/node": "^18.16.3",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.1",
+    "axios": "^1.4.0",
     "cra-template": "1.2.0",
+    "mobx": "^6.9.0",
+    "mobx-react-lite": "^4.0.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
-    "styled-components": "^5.3.5"
+    "typescript": "^5.0.4"
+  },
+  "overrides": {
+    "typescript": "^5.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "browser": {
     "fs": false,
@@ -46,7 +54,19 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.21.3",
+    "@types/styled-components": "^5.1.26",
+    "babel-eslint": "^10.1.0",
     "babel-plugin-preval": "^5.1.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.7",
+    "react-app-rewire-alias": "^1.1.7",
+    "react-app-rewired": "^2.2.1",
     "web-vitals": "^2.1.4"
   }
 }
