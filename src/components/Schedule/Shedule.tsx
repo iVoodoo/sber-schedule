@@ -3,19 +3,14 @@ import GroupField from "./GroupField/GroupField"
 import ScheduleStore from "@store/ScheduleStore"
 import { observer } from "mobx-react-lite"
 import FullSchedule from "./FullSchedule/FullSchedule"
-import {
-  createSmartappDebugger,
-  createAssistant,
-  // eslint-disable-next-line no-unused-vars
-  AssistantAppState
-} from "@sberdevices/assistant-client"
+import { createSmartappDebugger, createAssistant, AssistantAppState } from "@salutejs/client"
 
 // eslint-disable-next-line no-unused-vars
 const initializeAssistant = (getState: any) => {
   if (process.env.NODE_ENV === "development") {
     return createSmartappDebugger({
       token: process.env.REACT_APP_TOKEN ?? "",
-      initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
+      initPhrase: `Запусти Политех расписание`,
       getState
     })
   }
@@ -30,11 +25,23 @@ const Schedule: React.FC = observer(() => {
   useEffect(() => {
     assistantRef.current = initializeAssistant(() => assistantStateRef.current)
 
-    assistantRef.current.on("data", ({ action }: any) => {
-      if (action) {
-        alert("test")
-      }
-    })
+    // assistantRef.current.on("data", ({ action }: any) => {
+    //   if (action) {
+    //     alert("test")
+    //   }
+    // })
+  }, [])
+
+  useEffect(() => {
+    assistantStateRef.current = {
+      data: ScheduleStore.schedule
+    }
+
+    // assistantRef.current.on("data", ({ action }: any) => {
+    //   if (action) {
+    //     alert("test")
+    //   }
+    // })
   }, [])
   return (
     <div>
