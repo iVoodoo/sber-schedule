@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react"
 import GroupField from "./GroupField/GroupField"
 import ScheduleStore from "@store/ScheduleStore"
+import prepareGroupNumber from "@utils/prepareGroupNumber"
 import { observer } from "mobx-react-lite"
 import FullSchedule from "./FullSchedule/FullSchedule"
 import { createSmartappDebugger, createAssistant, AssistantAppState } from "@salutejs/client"
@@ -25,24 +26,32 @@ const Schedule: React.FC = observer(() => {
   useEffect(() => {
     assistantRef.current = initializeAssistant(() => assistantStateRef.current)
 
-    // assistantRef.current.on("data", ({ action }: any) => {
-    //   if (action) {
-    //     alert("test")
-    //   }
-    // })
+    assistantRef.current.on("data", ({ action }: any) => {
+      if (action) {
+        console.log(action)
+        let groupNumber = `${action.group1}${action.group2}`
+        if (action.type === "all") {
+          ScheduleStore.getScheduleData(prepareGroupNumber(groupNumber))
+        }
+        if (action.type === "today") {
+          ScheduleStore.getScheduleToday(prepareGroupNumber(groupNumber))
+        }
+        console.log(groupNumber)
+      }
+    })
   }, [])
 
-  useEffect(() => {
-    assistantStateRef.current = {
-      data: ScheduleStore.schedule
-    }
+  // useEffect(() => {
+  //   assistantStateRef.current = {
+  //     data: ScheduleStore.getScheduleData()
+  //   }
 
-    // assistantRef.current.on("data", ({ action }: any) => {
-    //   if (action) {
-    //     alert("test")
-    //   }
-    // })
-  }, [])
+  //   // assistantRef.current.on("data", ({ action }: any) => {
+  //   //   if (action) {
+  //   //     alert("test")
+  //   //   }
+  //   // })
+  // }, [])
   return (
     <div>
       <GroupField />
