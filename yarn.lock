@@ -1521,6 +1521,11 @@
   resolved "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA= sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
+"@remix-run/router@1.6.2":
+  version "1.6.2"
+  resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.6.2.tgz"
+  integrity sha512-LzqpSrMK/3JBAVBI9u3NWtOhWNw5AMQfrUFYB0+bDHTSw17z++WJLsPsxAuK+oSddsxk4d7F/JcdDPM1M5YAhA==
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
   resolved "https://registry.npmjs.org/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz"
@@ -1562,6 +1567,17 @@
   version "1.1.3"
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.3.tgz"
   integrity sha512-WiBSI6JBIhC6LRIsB2Kwh8DsGTlbBU+mLRxJmAe3LjHTdkDpwIbEOZgoXBbZilk/vlfjK8i6nKRAvIRn1XaIMw==
+
+"@salutejs/client@^1.9.3":
+  version "1.9.3"
+  resolved "https://registry.npmjs.org/@salutejs/client/-/client-1.9.3.tgz"
+  integrity sha512-teQk1adEyb0MbQ3UVVzKBJgaJQkC32QYExfnNIn7Ey94k1CZ/YYmz5Ii224zHoluup9+NhosCyhpANyU0dV/Yw==
+  dependencies:
+    "@salutejs/scenario" "0.30.0"
+    axios "0.21.1"
+    lodash.clonedeep "^4.5.0"
+    protobufjs "6.10.3"
+    uuid "8.0.0"
 
 "@salutejs/plasma-core@^1.0.0":
   version "1.114.0"
@@ -1614,23 +1630,12 @@
     lodash.throttle "4.1.1"
     react-draggable "4.4.3"
 
-"@salutejs/scenario@0.20.0":
-  version "0.20.0"
-  resolved "https://registry.npmjs.org/@salutejs/scenario/-/scenario-0.20.0.tgz"
-  integrity sha512-lXnGTfGhZfFlUyegOEcLyXRzXJn6FAm2dlO/IoNmqiWTzBoEwCIPmeu5dnAgKCAs2ZRTamaG4vC7zYTtJul5dg==
+"@salutejs/scenario@0.30.0":
+  version "0.30.0"
+  resolved "https://registry.npmjs.org/@salutejs/scenario/-/scenario-0.30.0.tgz"
+  integrity sha512-/rpJRo1DBV4T6oB1fAJ/YWuGltXnBOvraIyak73RQ5fU38oHbBmDUCA/qxyHuqRpuFqd1NqotHDxr9LQwOZbUQ==
   dependencies:
     node-fetch "2.6.1"
-
-"@sberdevices/assistant-client@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.npmjs.org/@sberdevices/assistant-client/-/assistant-client-5.0.2.tgz"
-  integrity sha512-8fYLqyOrwWQjzszY91pxI5h3EHkF9lXOJghhGh4BgRVQOu49kc5RytaVJ9D//0GwFP7WiO1Ea58ZeZFeMqIOVw==
-  dependencies:
-    "@salutejs/scenario" "0.20.0"
-    axios "0.21.1"
-    lodash.clonedeep "^4.5.0"
-    protobufjs "6.10.2"
-    uuid "8.0.0"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
@@ -7416,10 +7421,10 @@ prop-types@^15.6.0, prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-protobufjs@6.10.2:
-  version "6.10.2"
-  resolved "https://registry.npmjs.org/protobufjs/-/protobufjs-6.10.2.tgz"
-  integrity sha512-27yj+04uF6ya9l+qfpH187aqEzfCF4+Uit0I9ZBQVqK09hk/SQzKa2MUqUpXaVa7LOFRg1TSSr3lVxGOk6c0SQ==
+protobufjs@6.10.3:
+  version "6.10.3"
+  resolved "https://registry.npmjs.org/protobufjs/-/protobufjs-6.10.3.tgz"
+  integrity sha512-yvAslS0hNdBhlSKckI4R1l7wunVilX66uvrjzE4MimiAt7/qw1nLpMhZrn/ObuUTM/c3Xnfl01LYMdcSJe6dwg==
   dependencies:
     "@protobufjs/aspromise" "^1.1.2"
     "@protobufjs/base64" "^1.1.2"
@@ -7561,7 +7566,7 @@ react-dev-utils@^12.0.1:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
-react-dom@^18.0.0, "react-dom@>= 16.8.0", react-dom@>=16.13.1, react-dom@>=16.8.0:
+react-dom@^18.0.0, "react-dom@>= 16.8.0", react-dom@>=16.13.1, react-dom@>=16.8, react-dom@>=16.8.0:
   version "18.0.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.0.0.tgz"
   integrity sha512-XqX7uzmFo0pUceWFCt7Gff6IyIMzFUn7QMZrbrQfGxtaxXZIcGQzoNpRLE3fQLnS4XzLLPMZX2T9TRcSrasicw==
@@ -7620,6 +7625,21 @@ react-refresh@^0.11.0, "react-refresh@>=0.10.0 <1.0.0":
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
 
+react-router-dom@^6.11.2:
+  version "6.11.2"
+  resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.11.2.tgz"
+  integrity sha512-JNbKtAeh1VSJQnH6RvBDNhxNwemRj7KxCzc5jb7zvDSKRnPWIFj9pO+eXqjM69gQJ0r46hSz1x4l9y0651DKWw==
+  dependencies:
+    "@remix-run/router" "1.6.2"
+    react-router "6.11.2"
+
+react-router@6.11.2:
+  version "6.11.2"
+  resolved "https://registry.npmjs.org/react-router/-/react-router-6.11.2.tgz"
+  integrity sha512-74z9xUSaSX07t3LM+pS6Un0T55ibUE/79CzfZpy5wsPDZaea1F8QkrsiyRnA2YQ7LwE/umaydzXZV80iDCPkMg==
+  dependencies:
+    "@remix-run/router" "1.6.2"
+
 react-scripts@>=2.1.3, react-scripts@5.0.1:
   version "5.0.1"
   resolved "https://registry.npmjs.org/react-scripts/-/react-scripts-5.0.1.tgz"
@@ -7675,7 +7695,7 @@ react-scripts@>=2.1.3, react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
-"react@^16.8.0 || ^17", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.0.0, "react@>= 16", "react@>= 16.8.0", react@>=16.13.1, react@>=16.8.0:
+"react@^16.8.0 || ^17", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.0.0, "react@>= 16", "react@>= 16.8.0", react@>=16.13.1, react@>=16.8, react@>=16.8.0:
   version "18.0.0"
   resolved "https://registry.npmjs.org/react/-/react-18.0.0.tgz"
   integrity sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A==
