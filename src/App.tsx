@@ -17,7 +17,7 @@
 //     );
 // }
 
-import React from "react"
+import React, { useEffect, useRef } from "react"
 // createGlobalStyle нужен для создания глобальных стилей
 import styled, { createGlobalStyle } from "styled-components"
 
@@ -32,7 +32,12 @@ import { darkJoy } from "@salutejs/plasma-tokens"
 import { text, background, gradient } from "@salutejs/plasma-tokens"
 import HeaderApp from "./components/Header/Header"
 import { Container, Row } from "@salutejs/plasma-ui"
-import Schedule from "./components/Schedule/Shedule"
+import { Routes, Route, useNavigate } from "react-router-dom"
+import SchedulePage from "./pages/SchedulePage"
+import ContactsPage from "./pages/ContactsPage"
+import { AssistantAppState, createAssistant, createSmartappDebugger } from "@salutejs/client"
+import ScheduleStore from "@store/ScheduleStore"
+import prepareGroupNumber from "@utils/prepareGroupNumber"
 // import {
 //   createSmartappDebugger,
 //   createAssistant,
@@ -86,23 +91,45 @@ const Theme = createGlobalStyle(darkJoy)
 
 //   return createAssistant()
 // }
+const initializeAssistant = (getState: any) => {
+  if (process.env.NODE_ENV === "development") {
+    return createSmartappDebugger({
+      token: process.env.REACT_APP_TOKEN ?? "",
+      initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
+      getState
+    })
+  }
+
+  return createAssistant({ getState })
+}
 
 const App = () => {
-  // const assistant = initializeAssistant()
-  // assistant.on("data", (command) => {
-  //   // Подписка на команды ассистента, в т.ч. команда инициализации смартапа.
-  //   // Ниже представлен пример обработки голосовых команд "ниже"/"выше"
-  //   if (command.navigation) {
-  //     switch (command.navigation.command) {
-  //       case "UP":
-  //         window.scrollTo(0, 0)
-  //         break
-  //       case "DOWN":
-  //         window.scrollTo(0, 1000)
-  //         break
-  //     }
-  //   }
-  // })
+  const assistantStateRef = useRef<AssistantAppState>()
+  const assistantRef = useRef<ReturnType<typeof createAssistant>>()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    assistantRef.current = initializeAssistant(() => assistantStateRef.current)
+
+    assistantRef.current.on("data", ({ action }: any) => {
+      if (action) {
+        console.log(action)
+        if (action.type === "all") {
+          let groupNumber = `${action.group1}${action.group2}`
+          navigate("/")
+          ScheduleStore.getScheduleData(prepareGroupNumber(groupNumber))
+        }
+        if (action.type === "today") {
+          let groupNumber = `${action.group1}${action.group2}`
+          navigate("/")
+          ScheduleStore.getScheduleToday(prepareGroupNumber(groupNumber))
+        }
+        if (action.type === "contacts") {
+          navigate("/contacts")
+        }
+      }
+    })
+  }, [])
   return (
     <AppStyled>
       {/* Используем глобальные react-компоненты один раз */}
@@ -113,13 +140,18 @@ const App = () => {
         <Row style={{ justifyContent: "center" }}>
           <HeaderApp />
         </Row>
+        <Routes>
+          <Route path="/" element={<SchedulePage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="*" element={<SchedulePage />} />
+        </Routes>
         {/* <Row>
                     <Col sizeS={4} sizeM={4} sizeL={4} sizeXL={6} offsetM={1} offsetL={2} offsetXL={3}>
                          <p style={{ marginBottom: '1rem', textAlign:'center'}}>1</p> 
                          <Schedule style={{textAlign:'center'}}/>
                     </Col>
                 </Row>*/}
-        <Schedule />
+        {/* <Schedule /> */}
       </Container>
     </AppStyled>
   )
