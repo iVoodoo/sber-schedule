@@ -1,10 +1,12 @@
-import axios from "axios"
-import { makeAutoObservable, runInAction } from "mobx"
+import { gradient } from '@salutejs/plasma-tokens'
+import { getGroupSchedule } from '@utils/api'
+import axios from 'axios'
+import { makeAutoObservable, runInAction } from 'mobx'
 
 class ScheduleStore {
   scheduleData = {
-    data: "",
-    group: "",
+    data: '',
+    group: '',
     today: false,
     status: false
   }
@@ -18,19 +20,24 @@ class ScheduleStore {
   }
 
   clearSchedule = () => {
-    this.scheduleData = { data: "", group: "", today: false, status: false }
+    this.scheduleData = { data: '', group: '', today: false, status: false }
   }
 
   getScheduleData = async (groupNumber: string) => {
     this.clearSchedule()
-    const response = await axios.get("/data/data.json")
-    const preparedResponse = response.data.contents
-    const founded = preparedResponse[groupNumber]
-    if (founded) {
+    const schedule = await getGroupSchedule(groupNumber).then((data) => {
+      return data
+    })
+
+    console.log(schedule)
+
+    if (schedule.data?.status === 'ok') {
+      console.log('HEREs')
+
       runInAction(() => {
         this.scheduleData = {
-          data: JSON.stringify(founded.grid),
-          group: founded.group.title,
+          data: schedule.data.grid,
+          group: schedule.data.group.title,
           today: false,
           status: true
         }
@@ -38,8 +45,8 @@ class ScheduleStore {
     } else {
       runInAction(() => {
         this.scheduleData = {
-          data: "",
-          group: "Либо введи номер группы, либо группа не найдена",
+          data: schedule.data.data,
+          group: schedule.data,
           today: false,
           status: false
         }
@@ -51,15 +58,20 @@ class ScheduleStore {
     this.clearSchedule()
     const today = new Date().getDay()
     // console.log(today)
-    const response = await axios.get("/data/data.json")
-    const preparedResponse = response.data.contents
-    const founded = preparedResponse[groupNumber]
+    // const response = await axios.get('/data/data.json')
+    // const preparedResponse = response.data.contents
+    // const founded = preparedResponse[groupNumber]
+    const schedule = await getGroupSchedule(groupNumber).then((data) => {
+      return data
+    })
 
-    if (founded && today !== 0) {
+    console.log(schedule)
+
+    if (schedule.data?.status === 'ok' && today !== 0) {
       runInAction(() => {
         this.scheduleData = {
-          data: JSON.stringify(founded.grid[today]),
-          group: founded.group.title,
+          data: schedule.data.grid[today],
+          group: schedule.data.group.title,
           today: true,
           status: true
         }
@@ -67,8 +79,8 @@ class ScheduleStore {
     } else {
       runInAction(() => {
         this.scheduleData = {
-          data: "",
-          group: "Введи номер группы или отдыхай",
+          data: schedule.data.data,
+          group: 'Введи номер группы или отдыхай',
           today: true,
           status: false
         }
