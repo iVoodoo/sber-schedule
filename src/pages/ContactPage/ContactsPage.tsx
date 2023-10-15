@@ -1,5 +1,5 @@
-import { addressData } from "@data/addressData"
-import { headline2 } from "@salutejs/plasma-tokens"
+import { addressData } from '@data'
+import { headline2 } from '@salutejs/plasma-tokens'
 import {
   Card,
   CardBody,
@@ -11,9 +11,9 @@ import {
   TextBox,
   TextBoxBigTitle,
   TextBoxSubTitle
-} from "@salutejs/plasma-ui"
+} from '@salutejs/plasma-ui'
 
-const ContactsPage = () => {
+export const ContactsPage = () => {
   return (
     <div>
       <Row>
@@ -24,35 +24,35 @@ const ContactsPage = () => {
       <Row>
         <Col size={4} offset={2}>
           <Cell
-            style={{ marginBottom: "1rem" }}
-            contentLeft={<TextBox title="тел.:" />}
-            content={<TextBox title="+7(495)223-05-23" />}
+            style={{ marginBottom: '1rem' }}
+            contentLeft={<TextBox title='тел.:' />}
+            content={<TextBox title='+7(495)223-05-23' />}
           />
         </Col>
         <Col size={4} offset={2}>
           <Cell
-            style={{ marginBottom: "1rem" }}
-            contentLeft={<TextBox title="факс.:" />}
-            content={<TextBox title="+7(499)785-62-24" />}
+            style={{ marginBottom: '1rem' }}
+            contentLeft={<TextBox title='факс.:' />}
+            content={<TextBox title='+7(499)785-62-24' />}
           />
         </Col>
         <Col size={4} offset={2}>
           <Cell
-            style={{ marginBottom: "1rem" }}
-            contentLeft={<TextBox title="e-mail:" />}
-            content={<TextBox title="mospolytech@mospolytech.ru" />}
+            style={{ marginBottom: '1rem' }}
+            contentLeft={<TextBox title='e-mail:' />}
+            content={<TextBox title='mospolytech@mospolytech.ru' />}
           />
         </Col>
       </Row>
       <Row>
-        <Col size={4} offset={2} style={{ marginBottom: "1rem" }}>
+        <Col size={4} offset={2} style={{ marginBottom: '1rem' }}>
           <H2 style={headline2}>Адреса</H2>
         </Col>
       </Row>
       <Row>
         {addressData.map((item) => {
           return (
-            <Col size={4} offset={1} style={{ marginBottom: "1rem" }} key={item.address}>
+            <Col size={4} offset={1} style={{ marginBottom: '1rem' }} key={item.address}>
               <Card>
                 <CardBody>
                   <CardContent>
@@ -68,5 +68,3 @@ const ContactsPage = () => {
     </div>
   )
 }
-
-export default ContactsPage

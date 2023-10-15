@@ -1,15 +1,12 @@
-import ScheduleStore from "@store/ScheduleStore"
-import { observer } from "mobx-react-lite"
-import SingleCard from "./SingleCard"
-import getTime from "@utils/getTime"
-import getDayName from "@utils/getDayName"
-import isStudyDay from "@utils/isStudyDay"
-import { ObjectType } from "typescript"
+import ScheduleStore from '@store/ScheduleStore'
+import { observer } from 'mobx-react-lite'
+import SingleCard from './SingleCard'
+import { getDayName, getTime, isStudyDay } from '@utils/helpers'
 
 const FullSchedule = observer(() => {
-  let data = ""
+  let data = ''
 
-  data = JSON.parse(ScheduleStore.schedule.data)
+  data = ScheduleStore.schedule.data
   console.log(data)
 
   return (

@@ -11,8 +11,8 @@ import {
   TextBoxBigTitle,
   TextBoxSubTitle
   // TextField
-} from "@salutejs/plasma-ui"
-import { SingleCardProps } from "@AppTypes/SingleCardProps"
+} from '@salutejs/plasma-ui'
+import { SingleCardProps } from '@types'
 // import React from "react"
 // import * as ReactDOM from "react-dom"
 // import { createRoot } from "react-dom"
@@ -21,18 +21,18 @@ import { SingleCardProps } from "@AppTypes/SingleCardProps"
 
 const SingleCard: React.FC<SingleCardProps> = ({ subject, teacher, location, time, period }) => {
   return (
-    <Card style={{ width: "75vw", marginBottom: "1rem" }}>
+    <Card style={{ width: '75vw', marginBottom: '1rem' }}>
       <CardBody>
         <CardContent>
           <div>
-            <Badge style={{ marginRight: "1rem", padding: "0.6rem" }} text={time} size="s" />
+            <Badge style={{ marginRight: '1rem', padding: '0.6rem' }} text={time} size='s' />
             <Badge
               text={location}
-              size="s"
-              style={{ marginRight: "1rem", padding: "0.6rem" }}
-              view="secondary"
+              size='s'
+              style={{ marginRight: '1rem', padding: '0.6rem' }}
+              view='secondary'
             />
-            <Badge text={period} size="s" style={{ padding: "0.6rem" }} view="secondary" />
+            <Badge text={period} size='s' style={{ padding: '0.6rem' }} view='secondary' />
           </div>
           <div>
             <TextBoxBigTitle>{subject}</TextBoxBigTitle>

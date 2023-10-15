@@ -17,27 +17,26 @@
 //     );
 // }
 
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from 'react'
 // createGlobalStyle нужен для создания глобальных стилей
-import styled, { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from 'styled-components'
 
 // получаем значение для целевой платформы
-import { sberBox } from "@salutejs/plasma-tokens/typo"
+import { sberBox } from '@salutejs/plasma-tokens/typo'
 // получаем стилевые объекты для нашего интерфейса
-import { body1 } from "@salutejs/plasma-tokens"
-
+import { body1 } from '@salutejs/plasma-tokens'
 // получаем тему персонажа
-import { darkJoy } from "@salutejs/plasma-tokens"
+import { salutejs_sber__dark } from '@salutejs/plasma-tokens/themes'
 // получаем цвета для нашего интерфейса
-import { text, background, gradient } from "@salutejs/plasma-tokens"
-import HeaderApp from "./components/Header/Header"
-import { Container, Row } from "@salutejs/plasma-ui"
-import { Routes, Route, useNavigate } from "react-router-dom"
-import SchedulePage from "./pages/SchedulePage"
-import ContactsPage from "./pages/ContactsPage"
-import { AssistantAppState, createAssistant, createSmartappDebugger } from "@salutejs/client"
-import ScheduleStore from "@store/ScheduleStore"
-import prepareGroupNumber from "@utils/prepareGroupNumber"
+import { text, background, gradient } from '@salutejs/plasma-tokens'
+import { HeaderApp } from '@components'
+import { Container, Row } from '@salutejs/plasma-ui'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+
+import { AssistantAppState, createAssistant, createSmartappDebugger } from '@salutejs/client'
+import ScheduleStore from '@store/ScheduleStore'
+import { prepareGroupNumber } from '@utils/helpers'
+import { ContactsPage, SchedulePage } from '@pages'
 // import {
 //   createSmartappDebugger,
 //   createAssistant,
@@ -67,18 +66,15 @@ const TypoScale = createGlobalStyle(sberBox)
 // `;
 
 // создаем react-компонент для подложки
-const DocStyles = createGlobalStyle`
-    /* stylelint-disable-next-line selector-nested-pattern */
+const DocumentStyle = createGlobalStyle`
     html {
         color: ${text};
-        // background-color: ${background};
-        // background-image: ${gradient};
-        /** необходимо залить градиентом всю подложку */
-        min-height: 100vh;
+        background-color: ${background};
+        background-image: ${gradient};
     }
 `
 // создаем react-компонент для персонажа
-const Theme = createGlobalStyle(darkJoy)
+const Theme = createGlobalStyle(salutejs_sber__dark)
 
 // // eslint-disable-next-line no-unused-vars
 // const initializeAssistant = () => {
@@ -92,10 +88,10 @@ const Theme = createGlobalStyle(darkJoy)
 //   return createAssistant()
 // }
 const initializeAssistant = (getState: any) => {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     return createSmartappDebugger({
-      token: process.env.REACT_APP_TOKEN ?? "",
-      initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
+      token: import.meta.env.VITE_REACT_APP_TOKEN ?? '',
+      initPhrase: `Запусти ${import.meta.env.VITE_REACT_APP_SMARTAPP}`,
       getState
     })
   }
@@ -111,21 +107,21 @@ const App = () => {
   useEffect(() => {
     assistantRef.current = initializeAssistant(() => assistantStateRef.current)
 
-    assistantRef.current.on("data", ({ action }: any) => {
+    assistantRef.current.on('data', ({ action }: any) => {
       if (action) {
         console.log(action)
-        if (action.type === "all") {
+        if (action.type === 'all') {
           let groupNumber = `${action.group1}${action.group2}`
-          navigate("/")
+          navigate('/')
           ScheduleStore.getScheduleData(prepareGroupNumber(groupNumber))
         }
-        if (action.type === "today") {
+        if (action.type === 'today') {
           let groupNumber = `${action.group1}${action.group2}`
-          navigate("/")
+          navigate('/')
           ScheduleStore.getScheduleToday(prepareGroupNumber(groupNumber))
         }
-        if (action.type === "contacts") {
-          navigate("/contacts")
+        if (action.type === 'contacts') {
+          navigate('/contacts')
         }
       }
     })
@@ -133,17 +129,17 @@ const App = () => {
   return (
     <AppStyled>
       {/* Используем глобальные react-компоненты один раз */}
-      <TypoScale />
-      <DocStyles />
+      <DocumentStyle />
       <Theme />
+      <TypoScale />
       <Container>
-        <Row style={{ justifyContent: "center" }}>
+        <Row style={{ justifyContent: 'center' }}>
           <HeaderApp />
         </Row>
         <Routes>
-          <Route path="/" element={<SchedulePage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
-          <Route path="*" element={<SchedulePage />} />
+          <Route path='/' element={<SchedulePage />} />
+          <Route path='/contacts' element={<ContactsPage />} />
+          <Route path='*' element={<SchedulePage />} />
         </Routes>
         {/* <Row>
                     <Col sizeS={4} sizeM={4} sizeL={4} sizeXL={6} offsetM={1} offsetL={2} offsetXL={3}>
