@@ -37,7 +37,7 @@ const FullSchedule = observer(() => {
                                   key={index}
                                   subject={value.sbj}
                                   teacher={value.teacher}
-                                  location={value.location}
+                                  location={value.location + ' - ' + value.shortRooms.join(',')}
                                   time={time}
                                   period={value.dts}
                                 />
