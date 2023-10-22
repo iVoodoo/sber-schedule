@@ -1,22 +1,3 @@
-// import './App.css';
-// import React from 'react';
-// import Header from './components/Header/Header';
-// import Schedule from './components/Schedule/Shedule';
-// import { Col, Container, Row } from '@sberdevices/plasma-ui';
-// import HeaderApp from './components/Header/Header';
-
-// import { Button } from '@salutejs/plasma-ui';
-
-// export default function App() {
-//     return (
-//         <div className="App">
-//             <p>
-//                 <Button view="primary">Hello Plasma</Button>
-//             </p>
-//         </div>
-//     );
-// }
-
 import { useEffect, useRef } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 // createGlobalStyle нужен для создания глобальных стилей
@@ -35,12 +16,6 @@ import { sberBox } from '@salutejs/plasma-tokens/typo'
 import { Container, Row } from '@salutejs/plasma-ui'
 import ScheduleStore from '@store/ScheduleStore'
 import { prepareGroupNumber } from '@utils/helpers'
-// import {
-//   createSmartappDebugger,
-//   createAssistant,
-//   // eslint-disable-next-line no-unused-vars
-//   AssistantAppState
-// } from "@sberdevices/assistant-client"
 
 const AppStyled = styled.div`
   padding: 30px;
@@ -74,17 +49,6 @@ const DocumentStyle = createGlobalStyle`
 // создаем react-компонент для персонажа
 const Theme = createGlobalStyle(salutejs_sber__dark)
 
-// // eslint-disable-next-line no-unused-vars
-// const initializeAssistant = () => {
-//   if (process.env.NODE_ENV === "development") {
-//     return createSmartappDebugger({
-//       token: process.env.REACT_APP_TOKEN ?? "",
-//       initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`
-//     })
-//   }
-
-//   return createAssistant()
-// }
 const initializeAssistant = (getState: any) => {
   if (process.env.NODE_ENV === 'development') {
     return createSmartappDebugger({
