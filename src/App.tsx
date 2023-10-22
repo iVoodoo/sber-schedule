@@ -18,25 +18,23 @@
 // }
 
 import { useEffect, useRef } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 // createGlobalStyle нужен для создания глобальных стилей
 import styled, { createGlobalStyle } from 'styled-components'
 
-// получаем значение для целевой платформы
-import { sberBox } from '@salutejs/plasma-tokens/typo'
+import { HeaderApp } from '@components'
+import { ContactsPage, SchedulePage } from '@pages'
+import { AssistantAppState, createAssistant, createSmartappDebugger } from '@salutejs/client'
 // получаем стилевые объекты для нашего интерфейса
-import { body1 } from '@salutejs/plasma-tokens'
+// получаем цвета для нашего интерфейса
+import { background, body1, gradient, text } from '@salutejs/plasma-tokens'
 // получаем тему персонажа
 import { salutejs_sber__dark } from '@salutejs/plasma-tokens/themes'
-// получаем цвета для нашего интерфейса
-import { text, background, gradient } from '@salutejs/plasma-tokens'
-import { HeaderApp } from '@components'
+// получаем значение для целевой платформы
+import { sberBox } from '@salutejs/plasma-tokens/typo'
 import { Container, Row } from '@salutejs/plasma-ui'
-import { Routes, Route, useNavigate } from 'react-router-dom'
-
-import { AssistantAppState, createAssistant, createSmartappDebugger } from '@salutejs/client'
 import ScheduleStore from '@store/ScheduleStore'
 import { prepareGroupNumber } from '@utils/helpers'
-import { ContactsPage, SchedulePage } from '@pages'
 // import {
 //   createSmartappDebugger,
 //   createAssistant,
@@ -111,12 +109,12 @@ const App = () => {
       if (action) {
         console.log(action)
         if (action.type === 'all') {
-          let groupNumber = `${action.group1}${action.group2}`
+          const groupNumber = `${action.group1}${action.group2}`
           navigate('/')
           ScheduleStore.getScheduleData(prepareGroupNumber(groupNumber))
         }
         if (action.type === 'today') {
-          let groupNumber = `${action.group1}${action.group2}`
+          const groupNumber = `${action.group1}${action.group2}`
           navigate('/')
           ScheduleStore.getScheduleToday(prepareGroupNumber(groupNumber))
         }
@@ -133,7 +131,7 @@ const App = () => {
       <Theme />
       <TypoScale />
       <Container>
-        <Row style={{ justifyContent: 'center' }}>
+        <Row style={{ marginBottom: '1rem', justifyContent: 'center' }}>
           <HeaderApp />
         </Row>
         <Routes>
@@ -146,7 +144,7 @@ const App = () => {
                          <p style={{ marginBottom: '1rem', textAlign:'center'}}>1</p> 
                          <Schedule style={{textAlign:'center'}}/>
                     </Col>
-                </Row>*/}
+                </Row> */}
         {/* <Schedule /> */}
       </Container>
     </AppStyled>
