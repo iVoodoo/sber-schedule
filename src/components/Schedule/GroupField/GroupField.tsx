@@ -1,6 +1,7 @@
-import { Button, Row, TextField } from '@salutejs/plasma-ui'
-import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
+
+import { Button, Row, TextField } from '@salutejs/plasma-ui'
 import ScheduleStore from '@store/ScheduleStore'
 
 const GroupField = observer(() => {

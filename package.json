@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "deploy": "gh-pages -d build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -15,6 +16,7 @@
     "@salutejs/plasma-ui": "^1.215.0",
     "axios": "^1.4.0",
     "cra-template": "1.2.0",
+    "localtunnel": "^2.0.2",
     "mobx": "^6.9.0",
     "mobx-react-lite": "^4.0.2",
     "react": "^18.0.0",
@@ -46,6 +48,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "gh-pages": "^6.0.0",
     "prettier": "^2.8.7",
     "typescript": "^5.0.4",
     "vite": "^4.4.9",
