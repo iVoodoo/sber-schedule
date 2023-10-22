@@ -1,7 +1,8 @@
-import { gradient } from '@salutejs/plasma-tokens'
-import { getGroupSchedule } from '@utils/api'
 import axios from 'axios'
 import { makeAutoObservable, runInAction } from 'mobx'
+
+import { gradient } from '@salutejs/plasma-tokens'
+import { getGroupSchedule } from '@utils/api'
 
 class ScheduleStore {
   scheduleData = {
