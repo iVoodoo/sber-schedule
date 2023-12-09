@@ -20,8 +20,10 @@
     "localtunnel": "^2.0.2",
     "mobx": "^6.9.0",
     "mobx-react-lite": "^4.0.2",
+    "papaparse": "^5.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.2.0",
+    "react-papaparse": "^4.4.0",
     "react-router-dom": "^6.11.2",
     "styled-components": "^5.1.1"
   },
@@ -53,6 +55,7 @@
     "prettier": "^2.8.7",
     "typescript": "^5.0.4",
     "vite": "^4.4.9",
+    "vite-plugin-csv": "^1.0.0",
     "vite-plugin-svgr": "^4.1.0",
     "vite-tsconfig-paths": "^4.2.1",
     "web-vitals": "^2.1.4"

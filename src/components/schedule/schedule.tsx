@@ -1,8 +1,10 @@
-import React from 'react'
-import GroupField from './GroupField/GroupField'
 import { observer } from 'mobx-react-lite'
-import FullSchedule from './FullSchedule/FullSchedule'
+import React from 'react'
+
 import ScheduleStore from '@store/ScheduleStore'
+
+import FullSchedule from './full-schedule/full-schedule'
+import GroupField from './group-field/group-field'
 
 export const Schedule: React.FC = observer(() => {
   return (

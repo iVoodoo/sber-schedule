@@ -1,5 +1,7 @@
 export * from './getDayName'
 export * from './getSchedule'
 export * from './getTime'
+export * from './isClassPassed'
+export * from './isProjectActivity'
 export * from './isStudyDay'
 export * from './prepareGroupNumber'
