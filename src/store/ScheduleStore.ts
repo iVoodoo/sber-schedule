@@ -2,7 +2,7 @@ import axios from 'axios'
 import { makeAutoObservable, runInAction } from 'mobx'
 
 import { gradient } from '@salutejs/plasma-tokens'
-import { getGroupSchedule } from '@utils/api'
+import { getGroupSchedule, getTeacherSchedule } from '@utils/api'
 
 class ScheduleStore {
   scheduleData = {
@@ -11,6 +11,8 @@ class ScheduleStore {
     today: false,
     status: false
   }
+
+  teacherData = {}
 
   constructor() {
     makeAutoObservable(this)
@@ -87,6 +89,16 @@ class ScheduleStore {
         }
       })
     }
+  }
+
+  getTeacherSchedule = async (teacherName: string) => {
+    const schedule = await getTeacherSchedule(teacherName).then((data) => {
+      return data
+    })
+
+    runInAction(() => {
+      this.teacherData = schedule
+    })
   }
 }
 

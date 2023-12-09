@@ -3,6 +3,7 @@
 import { Link } from 'react-router-dom'
 
 import logo from '@assets/logo.png'
+import { RouteLinks } from '@routes'
 import { Icon } from '@salutejs/plasma-icons'
 import { Col, H1, Image, Row, TextBox } from '@salutejs/plasma-ui'
 
@@ -13,18 +14,22 @@ export const HeaderApp = () => {
         <Col size={2}>
           <Image src={logo} />
         </Col>
-        <Col size={2}>
+        <Col size={3}>
           <H1>Расписание занятий</H1>
         </Col>
       </Row>
       <Row style={{ marginBottom: '1rem', justifyContent: 'space-around' }}>
-        <Link to='/' style={{ textDecoration: 'none', textAlign: 'center' }}>
+        <Link to={RouteLinks.MAIN} style={{ textDecoration: 'none', textAlign: 'center' }}>
           <Icon icon='house' size='s' />
           <TextBox title='Расписание' />
         </Link>
-        <Link to='/contacts' style={{ textDecoration: 'none', textAlign: 'center' }}>
+        <Link to={RouteLinks.CONTACTS} style={{ textDecoration: 'none', textAlign: 'center' }}>
           <Icon icon='info' size='s' />
           <TextBox title='Контакты' />
+        </Link>
+        <Link to={RouteLinks.TEACHERS} style={{ textDecoration: 'none', textAlign: 'center' }}>
+          <Icon icon='persone' size='s' />
+          <TextBox title='Расписание преподавателей' />
         </Link>
       </Row>
     </header>
