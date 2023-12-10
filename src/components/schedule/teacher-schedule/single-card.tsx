@@ -17,10 +17,11 @@ const SingleCard: React.FC<SingleCardProps> = ({
   location,
   shortRooms,
   time,
-  period
+  period,
+  isClassPassed
 }) => {
   return (
-    <Card style={{ marginBottom: '1rem' }}>
+    <Card style={{ marginBottom: '1rem' }} disabled={isClassPassed}>
       <CardBody>
         <CardContent>
           <Row>

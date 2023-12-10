@@ -23,13 +23,13 @@ export const HeaderApp = () => {
           <Icon icon='house' size='s' />
           <TextBox title='Расписание' />
         </Link>
-        <Link to={RouteLinks.CONTACTS} style={{ textDecoration: 'none', textAlign: 'center' }}>
-          <Icon icon='info' size='s' />
-          <TextBox title='Контакты' />
-        </Link>
         <Link to={RouteLinks.TEACHERS} style={{ textDecoration: 'none', textAlign: 'center' }}>
           <Icon icon='persone' size='s' />
           <TextBox title='Расписание преподавателей' />
+        </Link>
+        <Link to={RouteLinks.CONTACTS} style={{ textDecoration: 'none', textAlign: 'center' }}>
+          <Icon icon='info' size='s' />
+          <TextBox title='Контакты' />
         </Link>
       </Row>
     </header>

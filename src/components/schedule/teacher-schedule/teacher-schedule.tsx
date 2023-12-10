@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite'
 
 import { Col, Container, H1, H2, Row } from '@salutejs/plasma-ui'
-import ScheduleStore from '@store/ScheduleStore'
 import TeacherScheduleStore from '@store/TeacherScheduleStore'
 import { getDayName, getTime, isClassPassed, isStudyDay } from '@utils/helpers'
 
@@ -25,7 +24,7 @@ export const TeacherSchedule = observer(() => {
         const isStudy = isStudyDay(day)
         return (
           <Row key={index} style={{ marginTop: '1rem', justifyContent: 'center' }}>
-            <Col type='rel' size={8} sizeS={8}>
+            <Col type='rel' size={8} sizeS={4}>
               <H2 mb={8}>{getDayName(key)}</H2>
 
               {isStudy !== 0 ? (
@@ -37,9 +36,7 @@ export const TeacherSchedule = observer(() => {
                     <div key={index}>
                       {Object.values(pairs).length !== 0 &&
                         Object.values(pairs).map((value: any, index) => {
-                          // console.log(value.location)
                           return (
-                            // <Row style={{ justifyContent: 'center' }} key={index}>
                             <SingleCard
                               key={index}
                               subject={value.sbj}
@@ -48,8 +45,8 @@ export const TeacherSchedule = observer(() => {
                               shortRooms={value.shortRooms}
                               time={time}
                               period={value.dts}
+                              isClassPassed={isClassPassed(value.dt)}
                             />
-                            // </Row>
                           )
                         })}
                     </div>
